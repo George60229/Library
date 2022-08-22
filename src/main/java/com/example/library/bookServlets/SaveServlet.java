@@ -28,11 +28,11 @@ public class SaveServlet extends HttpServlet {
         int year= Integer.parseInt(request.getParameter("year"));
         int amount=Integer.parseInt(request.getParameter("amount"));
         if (amount<0){
-            response.sendError(404, "Wrong role for user!!!");
+            response.sendError(404, "Wrong amount!!!");
             return;
         }
-        if (year < 2022){
-            response.sendError(404, "Wrong role for user!!!");
+        if (year > 2022){
+            response.sendError(404, "Wrong year!!!");
             return;
         }
         Book myBook = new Book();

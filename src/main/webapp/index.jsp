@@ -17,13 +17,10 @@
 <a href="http://localhost:8888/Library_war_exploded/sign_up.jsp">Sign up servlet</a>
 
 
-<h1><%= "My Info" %>
-</h1>
-<a href="http://localhost:8888/Library_war_exploded/test.jsp">My Info</a>
 
 <h1><%= "Save Book " %>
 </h1>
-<a href="saveBook">Save book</a>
+<a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
 
 <h1><%= "Sign in " %>
 </h1>

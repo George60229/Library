@@ -41,14 +41,7 @@ public class SaveUserServlet extends HttpServlet {
             response.sendError(404, "Wrong role for user!!!");
             return;
         }
-        try {
-            if(UserRepository.checkLogin(login)){
-                response.sendError(404, "This user exist!!!");
-                return;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
 
 
         User myUser= new User();

@@ -14,10 +14,10 @@
 <form method="post" action="account.jsp">
     <label for ="login">Login</label>
     <input type="text" id="login">
-
+<br><br>
     <label for ="password">Password</label>
     <input type="text" id="password">
-
+    <br><br>
     <button name="button">Enter</button>
 
 </form>

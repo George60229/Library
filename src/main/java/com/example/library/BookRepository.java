@@ -39,6 +39,7 @@ public class BookRepository {
             ps.setString(2, myBook.getAuthor());
             ps.setString(3, myBook.getCountry());
             ps.setInt(4,myBook.getAmount());
+            ps.setInt(5,myBook.getYear());
 
             status = ps.executeUpdate();
             connection.close();
