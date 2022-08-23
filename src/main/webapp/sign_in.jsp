@@ -11,13 +11,14 @@
     <title>Enter name</title>
 </head>
 <body>
-<form method="post" action="account.jsp">
-    <label for ="login">Login</label>
-    <input type="text" id="login">
+<form action="account.jsp">
+
+    Login:<input type="text" name="login">
 <br><br>
-    <label for ="password">Password</label>
-    <input type="text" id="password">
+
+    Password:<input type="text" name="password">
     <br><br>
+    Role:<input type="text" name="role">
     <button name="button">Enter</button>
 
 </form>

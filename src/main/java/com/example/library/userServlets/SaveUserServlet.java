@@ -56,7 +56,9 @@ public class SaveUserServlet extends HttpServlet {
 
         status = UserRepository.save(myUser);
 
-
+        if(status==-1){
+            response.sendError(404,"User exist already");
+        }
         if (status > 0) {
             out.println("Record saved successfully!");
         } else {

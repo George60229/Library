@@ -18,9 +18,7 @@
 
 
 
-<h1><%= "Save Book " %>
-</h1>
-<a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+
 
 <h1><%= "Sign in " %>
 </h1>

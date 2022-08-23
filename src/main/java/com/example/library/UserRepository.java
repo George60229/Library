@@ -29,6 +29,7 @@ public class UserRepository {
         return connection;
     }
     public static int save(User myUser) {
+
         int status = 0;
         try {
 
@@ -130,12 +131,13 @@ public class UserRepository {
     //todo
     public static boolean checkLogin(String myLogin) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(*) FROM users WHERE login=?");
+        PreparedStatement test=connection.prepareStatement("SELECT COUNT(*) FROM users WHERE login=?");
 
         test.setString(1, myLogin);
 
-        int res= test.executeQuery().getInt(1);
-        return res > 0;
+        ResultSet res= test.executeQuery();
+        int result = res.getInt("count");
+        return result == 0;
 
     }
     public static boolean checkPass(String myLogin,String myPassword) throws SQLException {
