@@ -56,11 +56,12 @@ public class BookRepository {
 
         try {
             Connection connection = BookRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("update books set name=?,author=?,country=? where id=?");
+            PreparedStatement test=connection.prepareStatement("delete from books where amount=0");
+            int res=test.executeUpdate();
+
+            PreparedStatement ps = connection.prepareStatement("update books set amount=amount-1 where name=?");
             ps.setString(1, myBook.getName());
-            ps.setString(2, myBook.getAuthor());
-            ps.setString(3, myBook.getCountry());
-            ps.setInt(4, myBook.getId());
+
 
 
             status = ps.executeUpdate();

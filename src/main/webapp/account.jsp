@@ -50,5 +50,15 @@
 <h1><%= "Save Book " %>
 </h1>
 <a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+<form method="post" action="takeBook">
+    <br><br>
+    Take book
+    Name:<input type="text" name="name">
+    <br><br>
+    <button name="button">Enter</button>
+
+</form>
+
+
 </body>
 </html>

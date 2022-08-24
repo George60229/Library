@@ -28,9 +28,12 @@ public class UserRepository {
         }
         return connection;
     }
-    public static int save(User myUser) {
+    public static int save(User myUser) throws SQLException {
 
         int status = 0;
+        if(!checkLogin(myUser.getLogin())){
+            return -1;
+        }
         try {
 
 
@@ -132,21 +135,30 @@ public class UserRepository {
     public static boolean checkLogin(String myLogin) throws SQLException {
         Connection connection = UserRepository.getConnection();
         PreparedStatement test=connection.prepareStatement("SELECT COUNT(*) FROM users WHERE login=?");
-
+        int result=0;
         test.setString(1, myLogin);
 
         ResultSet res= test.executeQuery();
-        int result = res.getInt("count");
+        if (res.next()){
+            result = res.getInt("count");
+        }
+
         return result == 0;
 
     }
     public static boolean checkPass(String myLogin,String myPassword) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(id) as count FROM users WHERE login=?");
+        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE login=? and password=?");
 
-        test.setString(1, myLogin);
+        test.setString(1, myPassword);
+        test.setString(2,myLogin);
+        ResultSet res= test.executeQuery();
+        int result=0;
+        if (res.next()){
+             result = res.getInt("count");
+        }
 
-        return true;
+        return result>0;
 
     }
 

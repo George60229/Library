@@ -2,7 +2,6 @@ package com.example.library.userServlets;
 
 import com.example.library.User;
 import com.example.library.UserRepository;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +40,10 @@ public class SaveUserServlet extends HttpServlet {
             response.sendError(404, "Wrong role for user!!!");
             return;
         }
+        if(login.length()<5){
+            response.sendError(404, "This login is little!!!");
+            return;
+        }
 
 
 
@@ -51,21 +54,29 @@ public class SaveUserServlet extends HttpServlet {
         myUser.setRole(role);
         out.println(myUser);
 
-        int status = 0;
+        int status;
 
 
-        status = UserRepository.save(myUser);
+        try {
+            status = UserRepository.save(myUser);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if(status==-1){
             response.sendError(404,"User exist already");
+            out.close();
+            return;
         }
         if (status > 0) {
-            out.println("Record saved successfully!");
-        } else {
+            response.sendRedirect("sign_in.jsp");
+            out.close();
+
+        } if(status==0) {
             out.println("Sorry! unable to save record");
+
         }
-        response.sendRedirect("sign_in.jsp");
-        out.close();
+
 
     }
 }

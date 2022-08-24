@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name="viewUsers",value = "/view-users")
+@WebServlet("/viewBooksOrderByYear")
 public class ViewServletOrderByYear extends HttpServlet{
 
 

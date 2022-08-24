@@ -11,14 +11,14 @@
     <title>Enter name</title>
 </head>
 <body>
-<form action="account.jsp">
+<form action="authorizationUser">
 
     Login:<input type="text" name="login">
 <br><br>
 
     Password:<input type="text" name="password">
     <br><br>
-    Role:<input type="text" name="role">
+
     <button name="button">Enter</button>
 
 </form>
