@@ -13,7 +13,7 @@
 <body>
 
 <form method="post" action="save-user">
-
+<h1>Sign up</h1>
     Login: <input name="login" />
     <br><br>
     Password: <input name="password"  />

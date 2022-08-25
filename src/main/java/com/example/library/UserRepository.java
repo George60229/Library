@@ -131,7 +131,7 @@ public class UserRepository {
         return myUser;
     }
 
-    //todo
+
     public static boolean checkLogin(String myLogin) throws SQLException {
         Connection connection = UserRepository.getConnection();
         PreparedStatement test=connection.prepareStatement("SELECT COUNT(*) FROM users WHERE login=?");
@@ -146,12 +146,13 @@ public class UserRepository {
         return result == 0;
 
     }
-    public static boolean checkPass(String myLogin,String myPassword) throws SQLException {
+    public static boolean checkPass(String myLogin,String myPassword,String myRole) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE login=? and password=?");
+        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE login=? and password=? and role=?");
 
         test.setString(1, myPassword);
         test.setString(2,myLogin);
+        test.setString(3,myRole);
         ResultSet res= test.executeQuery();
         int result=0;
         if (res.next()){

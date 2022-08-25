@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.library.userServlets.AuthorizationUserServlet" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 8/22/2022
@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<p>Name: <%= request.getParameter("login") %></p>
-<p>Role: <%= request.getParameter("role") %></p>
+<p>Name: <%=AuthorizationUserServlet.login%></p>
+<p>Role: <%= AuthorizationUserServlet.role %></p>
 <form action="checkOrderBook">
     <p>Please select your preferred orderBy method:</p>
     <div>
@@ -37,19 +37,20 @@
 
     </div>
 </form>
+<% if (AuthorizationUserServlet.role.equals("Admin")) { %>
+<a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+<% }
+%>
 
 
-<h1><%= "View Books" %>
-</h1>
-<a href="viewBooksOrderByName">View Books servlet</a>
+<br>
+<br>
 
-<h1><%= "My Info" %>
-</h1>
 <a href="http://localhost:8888/Library_war_exploded/test.jsp">My Info</a>
 
-<h1><%= "Save Book " %>
-</h1>
-<a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+<br>
+<br>
+
 <form method="post" action="takeBook">
     <br><br>
     Take book
