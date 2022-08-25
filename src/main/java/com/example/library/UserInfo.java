@@ -3,7 +3,7 @@ package com.example.library;
 public class UserInfo {
     private int id;
     private String login;
-    private int book;
+    private String book;
     private int days;
 
     @Override
@@ -31,11 +31,11 @@ public class UserInfo {
         this.login = login;
     }
 
-    public int getBook() {
+    public String getBook() {
         return book;
     }
 
-    public void setBook(int book) {
+    public void setBook(String book) {
         this.book = book;
     }
 

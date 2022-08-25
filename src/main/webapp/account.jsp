@@ -10,33 +10,29 @@
 <head>
     <title>Title</title>
 </head>
-<body>
-<p>Name: <%=AuthorizationUserServlet.login%></p>
-<p>Role: <%= AuthorizationUserServlet.role %></p>
-<form action="checkOrderBook">
-    <p>Please select your preferred orderBy method:</p>
-    <div>
-        <input type="radio" id="1"
-               name="contact" value="1"checked>
-        <label for="1">Author</label>
 
-        <input type="radio" id="2"
-               name="contact" value="2">
-        <label for="2">Country</label>
+<table border="1" bgcolor=#bfa798 width=100%>
+    <tr align=center>
+        <td colspan=2 style="color:#950000; font-size:14pt">
+            My account</td></tr>
+    <tr align=left>
+        <td bgcolor=#ebebeb>
+            <p>Name: <%=AuthorizationUserServlet.login%></p>
+            <p>Role: <%= AuthorizationUserServlet.role %></p>
+        </td>
+        <a href="viewMyBook">View my Books</a>
 
-        <input type="radio" id="3"
-               name="contact" value="3">
-        <label for="3">Name</label>
-        <input type="radio" id="4"
-               name="contact" value="4">
-        <label for="4">Year</label>
+        <td style="width:20%">
 
-    </div>
-    <div>
-        <button type="submit">Submit</button>
+        </td></tr>
+    <tr align=center><td colspan=2>Подвал сайта</td></tr>
+</table>
 
-    </div>
-</form>
+
+<br><br>
+
+
+
 <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
 <a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
 <% }

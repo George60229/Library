@@ -57,7 +57,7 @@ public class BookRepository {
         try {
             Connection connection = BookRepository.getConnection();
             PreparedStatement test=connection.prepareStatement("delete from books where amount=0");
-            int res=test.executeUpdate();
+
 
             PreparedStatement ps = connection.prepareStatement("update books set amount=amount-1 where name=?");
             ps.setString(1, myBook.getName());
