@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Enter name</title>
+    <link rel="stylesheet" href="./styles.less">
 </head>
 <body>
 <form action="authorizationUser">
@@ -18,11 +19,13 @@
 
     Password:<input type="text" name="password">
     <br><br>
-    Role: <select name="role">
+    Role: <label>
+    <select name="role" class="select-css">
     <option value="Admin">Admin</option>
     <option value="Reader">Reader</option>
     <option value="Librarian">Librarian</option>
 </select>
+</label>
     <br><br>
     <button name="button">Enter</button>
 

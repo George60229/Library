@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Sign up</title>
+    <link rel="stylesheet" href="./styles.less">
 </head>
 <body>
 
@@ -18,14 +19,14 @@
     <br><br>
     Password: <input name="password"  />
     <br><br>
-    Role: <select name="role">
+    Role: <select name="role" class="select-css">
         <option value="Admin">Admin</option>
         <option value="Reader">Reader</option>
         <option value="Librarian">Librarian</option>
     </select>
 
     <br><br>
-    <input type="submit" value="Submit" />
+    <button name="button">Enter</button>
 </form>
 
 

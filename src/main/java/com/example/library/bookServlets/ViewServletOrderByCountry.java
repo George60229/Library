@@ -30,6 +30,7 @@ public class ViewServletOrderByCountry extends HttpServlet {
 
 
         }
+
         out.close();
     }
 }

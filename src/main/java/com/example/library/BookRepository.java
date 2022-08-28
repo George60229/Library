@@ -72,6 +72,28 @@ public class BookRepository {
         }
         return status;
     }
+    public static int updateAmount(Book myBook) {
+
+int status=0;
+
+        try {
+            Connection connection = BookRepository.getConnection();
+            PreparedStatement test=connection.prepareStatement("delete from books where amount=0");
+
+
+            PreparedStatement ps = connection.prepareStatement("update books set amount=amount+1 where name=?");
+            ps.setString(1, myBook.getName());
+
+
+
+            status=ps.executeUpdate();
+            connection.close();
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return status;
+    }
 
     public static int delete(int id) {
 

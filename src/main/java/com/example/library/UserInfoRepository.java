@@ -1,5 +1,7 @@
 package com.example.library;
 
+import com.example.library.userServlets.AuthorizationUserServlet;
+
 import java.sql.*;
 
 import static java.lang.System.out;
@@ -26,6 +28,29 @@ public class UserInfoRepository {
         }
         return connection;
     }
+    public static int updateAmount(Book myBook) {
+
+int status=0;
+
+        try {
+            Connection connection = BookRepository.getConnection();
+
+
+
+            PreparedStatement ps = connection.prepareStatement("delete from users_info where book=? and login=?");
+            ps.setString(1, myBook.getName());
+            ps.setString(2, AuthorizationUserServlet.login);
+
+
+status=ps.executeUpdate();
+            connection.close();
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return status;
+    }
+
     public static int save(UserInfo myUserInfo) throws SQLException {
         int status=0;
 

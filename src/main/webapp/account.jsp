@@ -16,14 +16,50 @@
         <td colspan=2 style="color:#950000; font-size:14pt">
             My account</td></tr>
     <tr align=left>
+
         <td bgcolor=#ebebeb>
-            <p>Name: <%=AuthorizationUserServlet.login%></p>
-            <p>Role: <%= AuthorizationUserServlet.role %></p>
+
+            <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
+            <a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+            <% }
+            %>
+
+
+            <br>
+            <br>
+
+
+
+            <br>
+            <br>
+            <a href="viewMyBook">View my Books</a>
+            <br>
+            <br>
+            <form method="post" action="returnBook">
+                <br><br>
+
+
+                <br><br>
+                <button name="button">Return book</button>
+
+            </form>
+
+
+            <form method="post" action="takeBook">
+                <br><br>
+                Take book
+                Name:<input type="text" name="name">
+                <br><br>
+                <button name="button">Enter</button>
+
+            </form>
+
         </td>
-        <a href="viewMyBook">View my Books</a>
+
 
         <td style="width:20%">
-
+            <p>Name: <%=AuthorizationUserServlet.login%></p>
+            <p>Role: <%= AuthorizationUserServlet.role %></p>
         </td></tr>
     <tr align=center><td colspan=2>Подвал сайта</td></tr>
 </table>
@@ -33,28 +69,8 @@
 
 
 
-<% if (AuthorizationUserServlet.role.equals("Admin")) { %>
-<a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
-<% }
-%>
 
 
-<br>
-<br>
-
-<a href="http://localhost:8888/Library_war_exploded/test.jsp">My Info</a>
-
-<br>
-<br>
-
-<form method="post" action="takeBook">
-    <br><br>
-    Take book
-    Name:<input type="text" name="name">
-    <br><br>
-    <button name="button">Enter</button>
-
-</form>
 
 
 </body>

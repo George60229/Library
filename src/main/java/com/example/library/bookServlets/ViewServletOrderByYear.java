@@ -28,6 +28,7 @@ public class ViewServletOrderByYear extends HttpServlet{
 
 
         }
+
         out.close();
     }
 }
