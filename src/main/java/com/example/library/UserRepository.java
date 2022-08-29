@@ -106,8 +106,8 @@ public class UserRepository {
 
         try {
             Connection connection = BookRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("update users set isblocked=? where id=? ");
-            ps.setInt(2, myUser.getId());
+            PreparedStatement ps = connection.prepareStatement("update users set isblocked=? where login=? ");
+            ps.setString(2, myUser.getLogin());
             ps.setBoolean(1, myUser.getIsBlocked());
             status = ps.executeUpdate();
             connection.close();
@@ -118,6 +118,23 @@ public class UserRepository {
         return status;
     }
 
+    public static int updatePass(User myUser) {
+
+        int status = 0;
+
+        try {
+            Connection connection = BookRepository.getConnection();
+            PreparedStatement ps = connection.prepareStatement("update users set password=? where login=? ");
+            ps.setString(1,myUser.getPassword());
+            ps.setString(2,myUser.getLogin());
+            status = ps.executeUpdate();
+            connection.close();
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return status;
+    }
 
     public static User createUser(ResultSet rs) throws SQLException {
         User myUser = new User();
@@ -148,7 +165,7 @@ public class UserRepository {
     }
     public static boolean checkPass(String myLogin,String myPassword,String myRole) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE login=? and password=? and role=?");
+        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE login=? and password=? and role=? and not isblocked=true ");
 
         test.setString(1, myPassword);
         test.setString(2,myLogin);

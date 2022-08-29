@@ -26,12 +26,12 @@ public class ReturnBookServlet extends HttpServlet {
 
 
 
-        String user = AuthorizationUserServlet.login;
 
+        String book=request.getParameter("name");
 
         Book myBook=new Book();
 
-        myBook.setName(UserInfoRepository.getMyBook(user));
+        myBook.setName(book);
         BookRepository.updateAmount(myBook);
         UserInfoRepository.updateAmount(myBook);
 

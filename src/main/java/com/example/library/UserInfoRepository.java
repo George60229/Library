@@ -3,7 +3,10 @@ package com.example.library;
 import com.example.library.userServlets.AuthorizationUserServlet;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import static com.example.library.BookRepository.createBook;
 import static java.lang.System.out;
 
 public class UserInfoRepository {
@@ -80,9 +83,9 @@ status=ps.executeUpdate();
         }
 return status;
     }
-    public static String getMyBook(String userName) {
+    public static List<Book> getMyBook(String userName) {
 
-        String res="";
+        List<Book> listBooks = new ArrayList<>();
 
         try {
             Connection connection = BookRepository.getConnection();
@@ -90,14 +93,18 @@ return status;
             ps.setString(1, userName);
             ResultSet rs = ps.executeQuery();
 
-        if(rs.next()) {
-            res =rs.getString("book");
-        }
+        while (rs.next()) {
+            Book myBook=new Book();
+            myBook.setName(rs.getString("book"));
+
+
+                listBooks.add(myBook);
+            }
             connection.close();
 
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return res;
+        return listBooks;
     }
 }

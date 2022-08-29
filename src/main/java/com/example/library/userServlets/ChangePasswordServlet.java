@@ -1,6 +1,5 @@
 package com.example.library.userServlets;
 
-
 import com.example.library.User;
 import com.example.library.UserRepository;
 
@@ -12,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/blockUser")
-public class BlockUserServlet extends HttpServlet {
+@WebServlet("/changePassword")
+public class ChangePasswordServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,32 +20,31 @@ public class BlockUserServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String sid = request.getParameter("login");
 
 
-        String block =request.getParameter("isblocked");
-        boolean blocked = false;
-        if ("1".equals(block)) {
-            blocked = true;
-        }
+        String newPassword = request.getParameter("new_password");
+        String newPasswordRepeated = request.getParameter("repeated_password");
+
+       if(!newPassword.equals(newPasswordRepeated)){
+           response.sendError(404,"Password is not repeated correctly ");
+       }
+
 
 
         User myUser = new User();
 
-        myUser.setBlocked(blocked);
-        myUser.setLogin(sid);
+
+        myUser.setLogin(AuthorizationUserServlet.login);
+        myUser.setPassword(newPassword);
 
 
-        int status = UserRepository.update(myUser);
+        int status = UserRepository.updatePass(myUser);
 
         if (status > 0) {
-            out.println("User is blocked successfully");
+            out.println("Password is changed successfully");
         } else {
             out.println("Sorry! unable to update record");
         }
         out.close();
     }
 }
-
-
-

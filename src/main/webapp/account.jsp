@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="./styles.less">
 </head>
 
 <table border="1" bgcolor=#bfa798 width=100%>
@@ -21,6 +22,24 @@
 
             <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
             <a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+            <form method="post" action="blockUser">
+                <br><br>
+
+
+                <br><br>
+                <button name="button">Block user</button>
+                Login user:<input type="text" name="login">
+                <div>
+                    <input type="radio" id="1"
+                           name="isblocked" value="1"checked>
+                    <label for="1">Block</label>
+
+                    <input type="radio" id="2"
+                           name="isblocked" value="2">
+                    <label for="2">Unblock</label>
+
+                </div>
+            </form>
             <% }
             %>
 
@@ -37,7 +56,7 @@
             <br>
             <form method="post" action="returnBook">
                 <br><br>
-
+                Enter name returned book :<input type="text" name="name">
 
                 <br><br>
                 <button name="button">Return book</button>
@@ -60,18 +79,13 @@
         <td style="width:20%">
             <p>Name: <%=AuthorizationUserServlet.login%></p>
             <p>Role: <%= AuthorizationUserServlet.role %></p>
+            <a href="http://localhost:8888/Library_war_exploded/change_password.jsp">Change password</a>
+
         </td></tr>
     <tr align=center><td colspan=2>Подвал сайта</td></tr>
 </table>
 
 
 <br><br>
-
-
-
-
-
-
-
 </body>
 </html>

@@ -47,7 +47,7 @@ public class TakeBookServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            response.sendRedirect("http://localhost:8888/Library_war_exploded/account.jsp");
+            out.println("all is ok");
         } else {
             out.println("Sorry! You can't take this book");
         }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/viewMyBook")
 public class ViewMyBookServlet extends HttpServlet {
@@ -22,10 +24,14 @@ public class ViewMyBookServlet extends HttpServlet {
 
         String name = AuthorizationUserServlet.login;
 
+        List<Book> result=UserInfoRepository.getMyBook(name);
+        for (Book myBook : result) {
 
-        String myBook = UserInfoRepository.getMyBook(name);
+            out.println("<h1>" + myBook.getName() + "</h1>");
 
-        out.print(myBook);
+
+        }
+
         out.close();
     }
 }
