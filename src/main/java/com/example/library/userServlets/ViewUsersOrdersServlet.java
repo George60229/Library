@@ -1,7 +1,8 @@
 package com.example.library.userServlets;
 
-
 import com.example.library.User;
+import com.example.library.UserInfo;
+import com.example.library.UserInfoRepository;
 import com.example.library.UserRepository;
 
 import javax.servlet.ServletException;
@@ -13,21 +14,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-
-@WebServlet("/viewUsers")
-public class ViewUsersServlet extends HttpServlet {
+@WebServlet("/viewUsersOrders")
+public class ViewUsersOrdersServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        List<User> list = UserRepository.getAllUsers();
+        List<UserInfo> list = UserInfoRepository.getAllUsersInfo();
 
-        for (User myUser : list) {
+        for (UserInfo myUserInfo : list) {
 
             out.println("<html><body>");
-            out.println("<h1>" + myUser + "</h1>");
+            out.println("<h1>" + myUserInfo + "</h1>");
             out.println("</body></html>");
 
 
@@ -35,4 +35,5 @@ public class ViewUsersServlet extends HttpServlet {
         out.close();
     }
 }
+
 

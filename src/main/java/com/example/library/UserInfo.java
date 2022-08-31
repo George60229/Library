@@ -11,7 +11,6 @@ public class UserInfo {
         return "UserInfo{" +
                 "login='" + login + '\'' +
                 ", book=" + book +
-                ", days=" + days +
                 '}';
     }
 

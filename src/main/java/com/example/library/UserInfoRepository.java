@@ -31,6 +31,32 @@ public class UserInfoRepository {
         }
         return connection;
     }
+    public static List<UserInfo> getAllUsersInfo() {
+        List<UserInfo> listUsers = new ArrayList<>();
+        try {
+            Connection connection = BookRepository.getConnection();
+            PreparedStatement ps = connection.prepareStatement("select book,login from users_info");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+
+                UserInfo myUserInfo=new UserInfo();
+                myUserInfo.setBook(rs.getString(1));
+                myUserInfo.setLogin(rs.getString(2));
+
+
+
+                listUsers.add(myUserInfo);
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listUsers;
+    }
     public static int updateAmount(Book myBook) {
 
 int status=0;

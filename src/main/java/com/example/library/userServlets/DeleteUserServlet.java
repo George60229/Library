@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/deleteUser")
 public class DeleteUserServlet extends HttpServlet {
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String sid = request.getParameter("login");
 
-        String sid = request.getParameter("id");
-        int id = Integer.parseInt(sid);
-        if(id<0){
-            response.sendError(404, "Wrong id !!!");
-            return;
-        }
-        UserRepository.delete(id);
-        response.sendRedirect("viewUserServlet");//todo useful this code
+        UserRepository.delete(sid);
+
+        response.sendRedirect("http://localhost:8888/Library_war_exploded/account.jsp");
+        out.close();
     }
 }
 

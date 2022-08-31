@@ -83,14 +83,14 @@ public class UserRepository {
         }
         return listUsers;
     }
-    public static int delete(int id) {
+    public static int delete(String login) {
 
         int status = 0;
 
         try {
             Connection connection = UserRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("delete from users where id=?");
-            ps.setInt(1, id);
+            PreparedStatement ps = connection.prepareStatement("delete from users where login=?");
+            ps.setString(1, login);
             status = ps.executeUpdate();
 
             connection.close();

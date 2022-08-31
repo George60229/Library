@@ -22,6 +22,8 @@
 
             <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
             <a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+            <br><br>
+            <a href="http://localhost:8888/Library_war_exploded/sign_up.jsp">Create User</a>
             <form method="post" action="blockUser">
                 <br><br>
 
@@ -40,6 +42,32 @@
 
                 </div>
             </form>
+
+            <form method="post" action="deleteUser">
+                <br><br>
+
+
+                <button name="button">Delete user</button>
+
+                <br><br>
+                Login user:<input type="text" name="login">
+            </form>
+
+            <form class="form" action="viewUsers">
+                <p class="form__title">View all users</p>
+                <div>
+                    <button type="submit">View</button>
+
+                </div>
+            </form>
+            <form class="form" action="viewUsersOrders">
+                <p class="form__title">View all users orders</p>
+                <div>
+                    <button type="submit">View</button>
+
+                </div>
+            </form>
+
             <% }
             %>
 
