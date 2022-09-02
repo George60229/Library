@@ -47,7 +47,7 @@ public class UserRepository {
 
 
                 ps.setString(1, myUser.getLogin());
-                ps.setString(2, myUser.getPassword());
+                ps.setString(2, String.valueOf(myUser.getPassword().hashCode()));
                 ps.setString(3, myUser.getRole());
 
 
@@ -125,7 +125,8 @@ public class UserRepository {
         try {
             Connection connection = BookRepository.getConnection();
             PreparedStatement ps = connection.prepareStatement("update users set password=? where login=? ");
-            ps.setString(1,myUser.getPassword());
+            ps.setString(1, String.valueOf(myUser.getPassword().hashCode()));
+
             ps.setString(2,myUser.getLogin());
             status = ps.executeUpdate();
             connection.close();
@@ -165,9 +166,9 @@ public class UserRepository {
     }
     public static boolean checkPass(String myLogin,String myPassword,String myRole) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE login=? and password=? and role=? and not isblocked=true ");
+        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE  password=? and login=? and role=? and not isblocked=true ");
 
-        test.setString(1, myPassword);
+        test.setString(1,myPassword);
         test.setString(2,myLogin);
         test.setString(3,myRole);
         ResultSet res= test.executeQuery();

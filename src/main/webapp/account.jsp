@@ -8,10 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" href="./styles.less">
+    <title>My account</title>
+    <link rel="stylesheet" href="styles/styles.less">
 </head>
+<div class="topnav">
+    <a href="viewMyBook">View my book</a>
+    <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
+    <a  href="viewUsersOrders">View users orders</a>
+    <a  href="viewUsers">View Users</a>
+    <a href="save_book.jsp">Save book</a>
+    <a href="sign_up.jsp">Create User</a>
+    <% }
+    %>
 
+
+</div>
 <table border="1" bgcolor=#bfa798 width=100%>
     <tr align=center>
         <td colspan=2 style="color:#950000; font-size:14pt">
@@ -19,11 +30,11 @@
     <tr align=left>
 
         <td bgcolor=#ebebeb>
-
+            <a href="index.jsp">Sign out</a>
             <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
-            <a href="http://localhost:8888/Library_war_exploded/save_book.jsp">Save book</a>
+
             <br><br>
-            <a href="http://localhost:8888/Library_war_exploded/sign_up.jsp">Create User</a>
+
             <form method="post" action="blockUser">
                 <br><br>
 
@@ -53,13 +64,7 @@
                 Login user:<input type="text" name="login">
             </form>
 
-            <form class="form" action="viewUsers">
-                <p class="form__title">View all users</p>
-                <div>
-                    <button type="submit">View</button>
 
-                </div>
-            </form>
             <form class="form" action="viewUsersOrders">
                 <p class="form__title">View all users orders</p>
                 <div>
@@ -79,7 +84,7 @@
 
             <br>
             <br>
-            <a href="viewMyBook">View my Books</a>
+
             <br>
             <br>
             <form method="post" action="returnBook">

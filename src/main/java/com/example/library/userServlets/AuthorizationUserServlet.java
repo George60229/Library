@@ -1,6 +1,6 @@
 package com.example.library.userServlets;
 
-import com.example.library.User;
+
 import com.example.library.UserRepository;
 
 import javax.servlet.ServletException;
@@ -26,7 +26,6 @@ public class AuthorizationUserServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String myPass = request.getParameter("password");
-
         String myLog = request.getParameter("login");
         String myRole=request.getParameter("role");
 
@@ -34,7 +33,7 @@ public class AuthorizationUserServlet extends HttpServlet {
         role=myRole;
         boolean res;
         try {
-            res = UserRepository.checkPass(myPass, myLog,myRole);
+            res = UserRepository.checkPass(myLog,String.valueOf(myPass.hashCode()),myRole);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

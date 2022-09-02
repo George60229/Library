@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <link rel="stylesheet" href="./styles.less">
+    <link rel="stylesheet" href="styles/styles.less">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         <p class="form__title">Please select your preferred orderBy method for books:</p>
         <div>
             <input type="radio" id="1"
-                   name="contact" value="1"checked>
+                   name="contact" value="1" checked>
             <label for="1">Author</label>
 
             <input type="radio" id="2"

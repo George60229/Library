@@ -8,6 +8,8 @@ public class User {
     private boolean isblocked=false;
 
 
+
+
     public int getId() {
         return id;
     }
@@ -52,9 +54,10 @@ public class User {
     public String toString() {
         return "User{" +
                 " login='" + login + '\'' +
-                ", password='" + password + '\'' +
+
                 ", role=" + role +
                 '}';
     }
+    //remove password
 }
 

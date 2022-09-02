@@ -9,15 +9,15 @@
 <html>
 <head>
     <title>Sign up</title>
-    <link rel="stylesheet" href="./styles.less">
+    <link rel="stylesheet" href="styles/styles.less">
 </head>
 <body>
 
 <form method="post" action="save-user">
 <h1>Sign up</h1>
-    Login: <input name="login" />
+    Login: <input name="login " minlength="5"/>
     <br><br>
-    Password: <input name="password"  />
+    Password: <input name="password" minlength="5" />
     <br><br>
     Role: <select name="role" class="select-css">
         <option value="Admin">Admin</option>

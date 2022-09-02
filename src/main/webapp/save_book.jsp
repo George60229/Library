@@ -15,11 +15,11 @@
 
         Country: <input name="country"  />
 
-        Amount: <input name="amount" />
+        Amount: <input name="amount" min="1"/>
 
         Author: <input name="author"  />
 
-        Year: <input name="year"  />
+        Year: <input name="year"  max="2022"/>
 
 
 

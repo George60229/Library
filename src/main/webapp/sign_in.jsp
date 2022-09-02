@@ -9,15 +9,43 @@
 <html>
 <head>
     <title>Enter name</title>
-    <link rel="stylesheet" href="./styles.less">
+    <link rel="stylesheet" href="styles/enter_styles.less">
 </head>
 <body>
+
+<h1>Sign in</h1>
+<button id="show">Show password</button>
+<br>
+<br>
+
+
+
 <form action="authorizationUser">
-    <h1>Sign in</h1>
-    Login:<input type="text" name="login">
+
+    Login:<input type="text" name="login" minlength="5">
 <br><br>
 
-    Password:<input type="text" name="password">
+    Password:<input type="password" name="password" minlength="5" id="show1">
+
+    <script>
+        var input = document.getElementById("show1");
+        var button = document.getElementById("show");
+        button.onclick = show;
+
+        function show () {
+            if(input.getAttribute('type') == 'password') {
+                input.removeAttribute('type');
+                input.setAttribute('type', 'text');
+                button.innerHTML='Hide password';
+
+            } else {
+                input.removeAttribute('type');
+                input.setAttribute('type', 'password');
+                button.innerHTML='Show password';
+
+            }
+        }
+    </script>
     <br><br>
     Role: <label>
     <select name="role" class="select-css">

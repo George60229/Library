@@ -54,7 +54,7 @@ public class Book {
                 ", amount='" + amount + '\'' +
                 ", year='" + year + '\'' +
                 "}";
-        //fix it why 2????
+
     }
 
     public int getYear() {

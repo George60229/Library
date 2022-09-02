@@ -30,16 +30,9 @@ public class SaveUserServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String role = request.getParameter("role");
-        if(password.length()<5){
-            response.sendError(404, "This password is weak!!!");
-            return;
-        }
-        if(!role.equals("Admin")&&!role.equals("Reader")&&!role.equals("Librarian")){
 
-            response.sendError(404, "Wrong role for user!!!");
-            return;
-        }
+        String role = request.getParameter("role");
+
         if(login.length()<5){
             response.sendError(404, "This login is little!!!");
             return;
