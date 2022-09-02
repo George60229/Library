@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 
-@WebServlet(name="saveUser",value = "/save-user")
+@WebServlet("/saveUser")
 public class SaveUserServlet extends HttpServlet {
     public void init() {
 
@@ -31,12 +31,9 @@ public class SaveUserServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        String role = request.getParameter("role");
 
-        if(login.length()<5){
-            response.sendError(404, "This login is little!!!");
-            return;
-        }
+
+
 
 
 
@@ -44,7 +41,7 @@ public class SaveUserServlet extends HttpServlet {
 
         myUser.setLogin(login);
         myUser.setPassword(password);
-        myUser.setRole(role);
+        myUser.setRole("Reader");
         out.println(myUser);
 
         int status;
@@ -62,14 +59,14 @@ public class SaveUserServlet extends HttpServlet {
             return;
         }
         if (status > 0) {
-            response.sendRedirect("sign_in.jsp");
+            response.sendRedirect("index.jsp");
             out.close();
 
         } if(status==0) {
             out.println("Sorry! unable to save record");
 
         }
-
+//todo add role adding
 
     }
 }

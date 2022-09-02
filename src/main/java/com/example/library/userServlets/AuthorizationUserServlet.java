@@ -18,6 +18,7 @@ public class AuthorizationUserServlet extends HttpServlet {
 
     public static String login;
     public static String role;
+    //todo httpSession
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

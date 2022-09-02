@@ -3,7 +3,7 @@ public class User {
     private int id;
     private String login;
     private String password;
-    private String role;
+    private String role="Reader";
 
     private boolean isblocked=false;
 
@@ -54,7 +54,6 @@ public class User {
     public String toString() {
         return "User{" +
                 " login='" + login + '\'' +
-
                 ", role=" + role +
                 '}';
     }

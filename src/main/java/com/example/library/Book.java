@@ -1,4 +1,7 @@
 package com.example.library;
+
+import java.util.Objects;
+
 public class Book {
 
 
@@ -80,6 +83,20 @@ public class Book {
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id && year == book.year && amount == book.amount && isDeleted == book.isDeleted && Objects.equals(name, book.name) && Objects.equals(country, book.country) && Objects.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, country, author, year, amount, isDeleted);
+    }
+
 }
 
 
