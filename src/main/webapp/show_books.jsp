@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.example.library.BookRepository" %>
+<%@ page import="com.example.library.Book" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 9/3/2022
@@ -6,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
   <title>Show books</title>
@@ -27,8 +29,11 @@
   </tr>
   </thead>
   <tbody>
+  <%List<Book> list = BookRepository.getAllBooksOrderByCountry();
+   request.setAttribute("myList",list);
 
-   <c:forEach items="${requestScope.list}" var="book">--%>
+%>
+   <c:forEach items="${requestScope.myList}" var="book">--%>
 
     <tr>
       <td><c:out value="${book.id}"/> </td>

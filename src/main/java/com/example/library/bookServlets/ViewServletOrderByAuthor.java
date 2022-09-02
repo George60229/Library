@@ -19,13 +19,12 @@ public class ViewServletOrderByAuthor extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        response.setContentType("text/html");
+
         PrintWriter out = response.getWriter();
 
-        List<Book> list = BookRepository.getAllBooksOrderByAuthor();
-
-        request.setAttribute("myList",list);
         response.sendRedirect("show_books.jsp");
+
+
 
         out.close();
 
