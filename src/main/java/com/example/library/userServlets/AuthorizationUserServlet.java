@@ -27,24 +27,29 @@ public class AuthorizationUserServlet extends HttpServlet {
 
         String myPass = request.getParameter("password");
         String myLog = request.getParameter("login");
-        String myRole=request.getParameter("role");
+
 
         login=myLog;
-        role=myRole;
+
         boolean res;
         try {
-            res = UserRepository.checkPass(myLog,String.valueOf(myPass.hashCode()),myRole);
+            res = UserRepository.checkPass(myLog,String.valueOf(myPass.hashCode()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         if (res) {
-
+            try {
+                UserRepository.checkRole(myLog,String.valueOf(myPass.hashCode()));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             response.sendRedirect("account.jsp");
 
         } else {
             response.sendError(404, "Error, Something is wrong");
         }
+
         out.close();
     }
 

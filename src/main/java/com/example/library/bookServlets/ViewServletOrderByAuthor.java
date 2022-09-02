@@ -26,7 +26,7 @@ public class ViewServletOrderByAuthor extends HttpServlet {
 
         for (Book myBook : list) {
 
-            out.println("<h1>" + myBook + "</h1>");
+            out.print(myBook);
 
 
         }

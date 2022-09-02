@@ -17,7 +17,7 @@
     <a  href="viewUsersOrders">View users orders</a>
     <a  href="viewUsers">View Users</a>
     <a href="save_book.jsp">Save book</a>
-    <a href="sign_up.jsp">Create User</a>
+    <a href="enter.jsp">Create User</a>
     <% }
     %>
 
@@ -106,8 +106,36 @@
 
             </form>
 
-        </td>
 
+        </td>
+        <form class="form" action="checkOrderBook">
+            <div class="container">
+                <div class="radio">
+                    <input type="radio" id="1x"
+                           name="contact" value="1" checked>
+                    <label for="1">Author</label>
+                </div>
+
+                <div class="radio">
+                    <input type="radio" id="2x"
+                           name="contact" value="2">
+                    <label for="2">Country</label>
+                </div>
+
+
+                <div class="radio">
+                    <input type="radio" id="3x"
+                           name="contact" value="3">
+                    <label for="3x">Name</label>
+                </div>
+                <input type="radio" id="4x"
+                       name="contact" value="4">
+                <label for="4x">Year</label>
+            </div>
+
+
+                <button type="submit">Submit</button>
+        </form>
 
         <td style="width:20%">
             <p>Name: <%=AuthorizationUserServlet.login%></p>

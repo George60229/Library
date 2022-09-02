@@ -1,5 +1,7 @@
 package com.example.library;
 
+import com.example.library.userServlets.AuthorizationUserServlet;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -164,20 +166,35 @@ public class UserRepository {
         return result == 0;
 
     }
-    public static boolean checkPass(String myLogin,String myPassword,String myRole) throws SQLException {
+
+    public static boolean checkPass(String myLogin,String myPassword) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE  password=? and login=? and role=? and not isblocked=true ");
+        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE  password=? and login=? and not isblocked=true ");
 
         test.setString(1,myPassword);
         test.setString(2,myLogin);
-        test.setString(3,myRole);
+
         ResultSet res= test.executeQuery();
         int result=0;
         if (res.next()){
-             result = res.getInt("count");
+            result = res.getInt("count");
         }
 
         return result>0;
+    }
+    public static void checkRole(String myLogin, String myPassword) throws SQLException {
+        Connection connection = UserRepository.getConnection();
+        PreparedStatement test=connection.prepareStatement("SELECT * FROM users WHERE  password=? and login=? and not isblocked=true ");
+
+        test.setString(1,myPassword);
+        test.setString(2,myLogin);
+
+        ResultSet res= test.executeQuery();
+
+        if (res.next()){
+            AuthorizationUserServlet.role=res.getString("role");
+            AuthorizationUserServlet.login=res.getString("login");
+        }
 
     }
 

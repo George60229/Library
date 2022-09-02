@@ -2,44 +2,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
-    <link rel="stylesheet" href="styles/styles.less">
-</head>
-<body>
 
-<h2 align="center"><font color="#675bf5" size="5"><strong>Welcome to best library</strong></font></h2>
+    <link rel="shortcut icon" href="https://img.captain-droid.com/wp-content/uploads/2014/03/ckazki-dlya-detey-icon.png.webp" type="image/x-icon">
+<title>Main page</title>
+    <link rel="stylesheet" href="styles/enter_styles.less">
+</head>
+<body bgcolor="#fff8dc">
+
+<div class="one"><h1>Welcome to the best library</h1>
+
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="authorizationUser">
+
+
+            <div class="container">
+
+                <input type="text" placeholder="Enter Username" name="login" required>
+
+
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                </label>
+                <button type="submit">Login</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <button onclick="document.getElementById('id011').style.display='block'" style="width:auto;">Register</button>
+
+    <div id="id011" class="modal">
+
+        <form class="modal-content animate" action="authorizationUser">
+
+
+            <div class="container">
+
+                <input type="text" placeholder="Enter Username" name="login" required minlength="5">
+
+
+                <input type="password" placeholder="Enter Password" name="password" required minlength="5">
+
+                </label>
+                <button type="submit">Submit</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id011').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</div>
 
 
 <div class="wrapper">
-    <div class="logger">
-        <a class="logger__link" href="http://localhost:8888/Library_war_exploded/sign_up.jsp">Sign up </a>
-        <a class="logger__link" href="http://localhost:8888/Library_war_exploded/sign_in.jsp">Sign in</a>
-    </div>
 
-    <form class="form" action="checkOrderBook">
-        <p class="form__title">Please select your preferred orderBy method for books:</p>
-        <div>
-            <input type="radio" id="1"
-                   name="contact" value="1" checked>
-            <label for="1">Author</label>
 
-            <input type="radio" id="2"
-                   name="contact" value="2">
-            <label for="2">Country</label>
 
-            <input type="radio" id="3"
-                   name="contact" value="3">
-            <label for="3">Name</label>
-            <input type="radio" id="4"
-                   name="contact" value="4">
-            <label for="4">Year</label>
 
-        </div>
-        <div>
-            <button type="submit">Submit</button>
 
-        </div>
-    </form>
 </div>
 </body>
 </html>
