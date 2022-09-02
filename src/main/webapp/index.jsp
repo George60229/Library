@@ -4,7 +4,7 @@
 <head>
 
     <link rel="shortcut icon" href="https://img.captain-droid.com/wp-content/uploads/2014/03/ckazki-dlya-detey-icon.png.webp" type="image/x-icon">
-<title>Main page</title>
+    <title>Main page</title>
     <link rel="stylesheet" href="styles/enter_styles.less">
 </head>
 <body bgcolor="#fff8dc">
@@ -53,7 +53,7 @@
 
     <div id="id011" class="modal">
 
-        <form class="modal-content animate" action="authorizationUser">
+        <form method="post" class="modal-content animate" action="saveUser">
 
 
             <div class="container">

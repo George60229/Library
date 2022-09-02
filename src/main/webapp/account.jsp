@@ -21,8 +21,14 @@
     <% }
     %>
 
+    <a href="change_password.jsp">Change password</a>
+    <a href="index.jsp">Sign out</a>
+
+
 
 </div>
+<div class="two"><h1>Name:<%=AuthorizationUserServlet.login%></h1></div>
+<div class="two"><h1>Role:<%=AuthorizationUserServlet.login%></h1></div>
 <table border="1" bgcolor=#bfa798 width=100%>
     <tr align=center>
         <td colspan=2 style="color:#950000; font-size:14pt">
@@ -30,7 +36,7 @@
     <tr align=left>
 
         <td bgcolor=#ebebeb>
-            <a href="index.jsp">Sign out</a>
+
             <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
 
             <br><br>
@@ -62,15 +68,6 @@
 
                 <br><br>
                 Login user:<input type="text" name="login">
-            </form>
-
-
-            <form class="form" action="viewUsersOrders">
-                <p class="form__title">View all users orders</p>
-                <div>
-                    <button type="submit">View</button>
-
-                </div>
             </form>
 
             <% }
@@ -134,13 +131,11 @@
             </div>
 
 
-                <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
 
         <td style="width:20%">
-            <p>Name: <%=AuthorizationUserServlet.login%></p>
-            <p>Role: <%= AuthorizationUserServlet.role %></p>
-            <a href="http://localhost:8888/Library_war_exploded/change_password.jsp">Change password</a>
+
 
         </td></tr>
     <tr align=center><td colspan=2>Подвал сайта</td></tr>

@@ -24,12 +24,8 @@ public class ViewServletOrderByAuthor extends HttpServlet {
 
         List<Book> list = BookRepository.getAllBooksOrderByAuthor();
 
-        for (Book myBook : list) {
-
-            out.print(myBook);
-
-
-        }
+        request.setAttribute("myList",list);
+        response.sendRedirect("show_books.jsp");
 
         out.close();
 
