@@ -236,6 +236,8 @@ int status=0;
         try {
             Connection connection = BookRepository.getConnection();
             PreparedStatement ps = connection.prepareStatement("select * from books order by author");
+
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles/styles.less">
 </head>
 <div class="topnav">
+
     <a href="viewMyBook">View my book</a>
     <% if (AuthorizationUserServlet.role.equals("Admin")) { %>
     <a  href="viewUsersOrders">View users orders</a>
@@ -20,19 +21,19 @@
     <a href="enter.jsp">Create User</a>
     <% }
     %>
-
     <a href="change_password.jsp">Change password</a>
     <a href="index.jsp">Sign out</a>
 
 
 
 </div>
-<div class="two"><h1>Name:<%=AuthorizationUserServlet.login%></h1></div>
-<div class="two"><h1>Role:<%=AuthorizationUserServlet.login%></h1></div>
+
 <table border="1" bgcolor=#bfa798 width=100%>
     <tr align=center>
         <td colspan=2 style="color:#950000; font-size:14pt">
-            My account</td></tr>
+            <h1>Name:<%=AuthorizationUserServlet.login%></h1>
+            <h1>Role:<%=AuthorizationUserServlet.login%></h1>
+        </td></tr>
     <tr align=left>
 
         <td bgcolor=#ebebeb>
@@ -45,9 +46,12 @@
                 <br><br>
 
 
-                <br><br>
-                <button name="button">Block user</button>
+
+
+
                 Login user:<input type="text" name="login">
+
+                <button name="button">Block user</button>
                 <div>
                     <input type="radio" id="1"
                            name="isblocked" value="1"checked>
@@ -61,12 +65,12 @@
             </form>
 
             <form method="post" action="deleteUser">
-                <br><br>
+                <br><br> <br><br>
 
 
                 <button name="button">Delete user</button>
 
-                <br><br>
+
                 Login user:<input type="text" name="login">
             </form>
 
@@ -74,65 +78,29 @@
             %>
 
 
-            <br>
-            <br>
 
-
-
-            <br>
-            <br>
-
-            <br>
-            <br>
             <form method="post" action="returnBook">
-                <br><br>
+                <br><br> <br><br>
                 Enter name returned book :<input type="text" name="name">
 
-                <br><br>
+
                 <button name="button">Return book</button>
 
             </form>
 
 
             <form method="post" action="takeBook">
-                <br><br>
+                <br><br> <br><br>
                 Take book
                 Name:<input type="text" name="name">
-                <br><br>
+
                 <button name="button">Enter</button>
 
             </form>
 
 
         </td>
-        <form class="form" action="checkOrderBook">
-            <div class="container">
-                <div class="radio">
-                    <input type="radio" id="1x"
-                           name="contact" value="1" checked>
-                    <label for="1">Author</label>
-                </div>
 
-                <div class="radio">
-                    <input type="radio" id="2x"
-                           name="contact" value="2">
-                    <label for="2">Country</label>
-                </div>
-
-
-                <div class="radio">
-                    <input type="radio" id="3x"
-                           name="contact" value="3">
-                    <label for="3x">Name</label>
-                </div>
-                <input type="radio" id="4x"
-                       name="contact" value="4">
-                <label for="4x">Year</label>
-            </div>
-
-
-            <button type="submit">Submit</button>
-        </form>
 
         <td style="width:20%">
 

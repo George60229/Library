@@ -48,7 +48,7 @@ public class AuthorizationUserServlet extends HttpServlet {
             response.sendRedirect("account.jsp");
 
         } else {
-            response.sendError(404, "Error, Something is wrong");
+            response.sendRedirect("404.jsp");
         }
 
         out.close();

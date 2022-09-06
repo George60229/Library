@@ -22,7 +22,7 @@ public class ViewServletOrderByCountry extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        response.sendRedirect("show_books.jsp");
+        response.sendRedirect("show_books_1.jsp");
 
 
 

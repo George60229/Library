@@ -12,28 +12,34 @@
 <html>
 <head>
   <title>Show books</title>
+  <link rel="stylesheet" href="styles/table_styles.less">
 </head>
 <body>
 
 <table id="myTable" class="display" border="1" cellpadding="20%">
-  <thead>
+
   <tr>
     <th>Id</th>
     <th>Name</th>
-
     <th>Country</th>
     <th>Amount</th>
     <th>Year</th>
 
 
   </tr>
-  </thead>
-  <tbody>
-  <%List<Book> list = BookRepository.getAllBooksOrderByCountry();
-   request.setAttribute("myList",list);
 
+  <tbody>
+  <%
+
+
+  List<Book> list = BookRepository.getAllBooksOrderByAuthor();
+   request.setAttribute("myList",list);
 %>
-   <c:forEach items="${requestScope.myList}" var="book">--%>
+   <c:forEach items="${requestScope.myList}" var="book">
+  <%
+
+
+  %>
 
     <tr>
       <td><c:out value="${book.id}"/> </td>

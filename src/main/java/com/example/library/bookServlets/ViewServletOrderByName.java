@@ -22,14 +22,9 @@ public class ViewServletOrderByName extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        List<Book> list = BookRepository.getAllBooksOrderByName();
-
-        for (Book myBook : list) {
-
-            out.println("<h1>" + myBook + "</h1>");
 
 
-        }
+        response.sendRedirect("show_books_2.jsp");
 
         out.close();
     }

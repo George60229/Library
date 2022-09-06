@@ -1,3 +1,4 @@
+<%@ page import="com.example.library.userServlets.AuthorizationUserServlet" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@
 
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id011').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+
             </div>
         </form>
     </div>
@@ -83,17 +84,58 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+
         }
     </script>
+    <h2>Choose orderBy method to view all books</h2>
 </div>
 
 
-<div class="wrapper">
+
+
+    <form class="form" action="checkOrderBook">
+
+
+        <button type="submit">Submit</button>
+        <div class="container">
+
+
+
+            <p>
+                <input type="radio" id="1x"
+                       name="contact" value="1" checked>
+                <label for="1x">Author</label>
+            </p>
+            <p>
+                <input type="radio" id="2x"
+                       name="contact" value="2">
+                <label for="2x">Country</label>
+            </p>
+            <p>
+                <input type="radio" id="3x"
+                       name="contact" value="3">
+                <label for="3x">Name</label>
+            </p>
+
+
+           <p>
+               <input type="radio" id="4x"
+                      name="contact" value="4">
+               <label for="4x">Year</label>
+           </p>
 
 
 
 
 
-</div>
+        </div>
+
+
+
+    </form>
+
+
+
+
 </body>
 </html>

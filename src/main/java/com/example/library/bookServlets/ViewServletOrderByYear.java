@@ -20,14 +20,8 @@ public class ViewServletOrderByYear extends HttpServlet{
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        response.sendRedirect("show_books_3.jsp");
 
-        List<Book> list = BookRepository.getAllBooksOrderByYear();
-        for (Book myBook : list) {
-
-            out.println("<h1>" + myBook + "</h1>");
-
-
-        }
 
         out.close();
     }
