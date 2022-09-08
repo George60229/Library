@@ -19,20 +19,20 @@
 <table id="myTable" class="display" border="1" cellpadding="20%">
 
   <tr>
-    <th>Id</th>
+
     <th>Name</th>
     <th>Country</th>
     <th>Amount</th>
     <th>Year</th>
-
+    <th>Author</th>
 
   </tr>
 
   <tbody>
   <%
-
-
-  List<Book> list = BookRepository.getAllBooksOrderByAuthor();
+  String sid="";
+  sid =request.getParameter("contact");
+  List<Book> list = BookRepository.getAllBooksOrderBy(sid);
    request.setAttribute("myList",list);
 %>
    <c:forEach items="${requestScope.myList}" var="book">
@@ -47,7 +47,7 @@
       <td><c:out value="${book.country}"/> </td>
       <td><c:out value="${book.amount}"/> </td>
       <td><c:out value="${book.year}"/> </td>
-
+      <td><c:out value="${book.author}"/> </td>
 
     </tr>
       <%--        </c:if>--%>

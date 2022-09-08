@@ -139,6 +139,25 @@ public class UserRepository {
         return status;
     }
 
+    public static int updateRole(User myUser) {
+
+        int status = 0;
+
+        try {
+            Connection connection = BookRepository.getConnection();
+            PreparedStatement ps = connection.prepareStatement("update users set role=? where login=? ");
+            ps.setString(1, myUser.getRole());
+
+            ps.setString(2,myUser.getLogin());
+            status = ps.executeUpdate();
+            connection.close();
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return status;
+    }
+
     public static User createUser(ResultSet rs) throws SQLException {
         User myUser = new User();
 

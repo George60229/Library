@@ -6,13 +6,13 @@
 </head>
 <body>
 
-<h2>Modal Login Form</h2>
+
 
 <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
 <div id="id01" class="modal">
 
-  <form class="modal-content animate" action="authorizationUser">
+  <form class="modal-content animate" action="authorizationUser" >
 
 
     <div class="container">
@@ -41,6 +41,46 @@
 <script>
   // Get the modal
   var modal = document.getElementById('id01');
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Change role</button>
+
+<div id="id02" class="modal">
+
+  <form class="modal-content animate" action="changeRole" method="post">
+
+
+    <div class="container">
+
+      <input type="text" placeholder="Enter Username" name="login" required>
+
+      Role: <label>
+      <select name="role" class="select-css">
+        <option value="Admin">Admin</option>
+        <option value="Reader">Reader</option>
+        <option value="Librarian">Librarian</option>
+      </select>
+    </label>
+      <button type="submit">Login</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+
+    </div>
+  </form>
+</div>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById('id02');
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {

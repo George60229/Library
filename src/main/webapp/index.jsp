@@ -93,7 +93,7 @@
 
 
 
-    <form class="form" action="checkOrderBook">
+    <form class="form" action="show_books.jsp">
 
 
         <button type="submit">Submit</button>
@@ -103,24 +103,24 @@
 
             <p>
                 <input type="radio" id="1x"
-                       name="contact" value="1" checked>
+                       name="contact" value="author" checked>
                 <label for="1x">Author</label>
             </p>
             <p>
                 <input type="radio" id="2x"
-                       name="contact" value="2">
+                       name="contact" value="country">
                 <label for="2x">Country</label>
             </p>
             <p>
                 <input type="radio" id="3x"
-                       name="contact" value="3">
+                       name="contact" value="name">
                 <label for="3x">Name</label>
             </p>
 
 
            <p>
                <input type="radio" id="4x"
-                      name="contact" value="4">
+                      name="contact" value="year">
                <label for="4x">Year</label>
            </p>
 

@@ -229,14 +229,14 @@ int status=0;
         }
         return listBooks;
     }
-    public static List<Book> getAllBooksOrderByAuthor() {
+    public static List<Book> getAllBooksOrderBy(String sid) {
 
         List<Book> listBooks = new ArrayList<>();
-
+//todo orders by
         try {
             Connection connection = BookRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("select * from books order by author");
-
+            PreparedStatement ps = connection.prepareStatement("select * from books order by ?");
+            ps.setObject(1, sid);
 
             ResultSet rs = ps.executeQuery();
 
