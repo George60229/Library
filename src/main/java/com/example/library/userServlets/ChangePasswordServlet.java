@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -33,8 +34,9 @@ public class ChangePasswordServlet extends HttpServlet {
 
         User myUser = new User();
 
-
-        myUser.setLogin(AuthorizationUserServlet.login);
+        HttpSession session=request.getSession();
+        String login= (String) session.getAttribute("login");
+        myUser.setLogin(login);
         myUser.setPassword(newPassword);
 
 

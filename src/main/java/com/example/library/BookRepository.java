@@ -55,7 +55,7 @@ public class BookRepository {
         int status = 0;
 
         try {
-            Connection connection = BookRepository.getConnection();
+            Connection connection = UserRepository.getConnection();
             PreparedStatement test=connection.prepareStatement("delete from books where amount=0");
 
 
@@ -181,6 +181,30 @@ int status=0;
         }
         return listBooks;
     }
+    public static List<Book> getAllBooksOrderByAuthor() {
+
+        List<Book> listBooks = new ArrayList<>();
+
+        try {
+            Connection connection = BookRepository.getConnection();
+            PreparedStatement ps = connection.prepareStatement("select * from books order by author");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+
+                Book myBook=createBook(rs);
+
+                listBooks.add(myBook);
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listBooks;
+    }
     public static List<Book> getAllBooksOrderByName() {
 
         List<Book> listBooks = new ArrayList<>();
@@ -229,14 +253,14 @@ int status=0;
         }
         return listBooks;
     }
-    public static List<Book> getAllBooksOrderBy(String sid) {
+    public static List<Book> getAllBooksOrderBy(Object sid) {
 
         List<Book> listBooks = new ArrayList<>();
 //todo orders by
         try {
             Connection connection = BookRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("select * from books order by ?");
-            ps.setObject(1, sid);
+            PreparedStatement ps = connection.prepareStatement("select * from books");
+
 
             ResultSet rs = ps.executeQuery();
 

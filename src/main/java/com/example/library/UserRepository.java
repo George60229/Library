@@ -2,6 +2,7 @@ package com.example.library;
 
 import com.example.library.userServlets.AuthorizationUserServlet;
 
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,31 +31,29 @@ public class UserRepository {
         }
         return connection;
     }
+
     public static int save(User myUser) throws SQLException {
 
         int status = 0;
-        if(!checkLogin(myUser.getLogin())){
+        if (!checkLogin(myUser.getLogin())) {
             return -1;
         }
         try {
 
 
+            Connection connection = UserRepository.getConnection();
 
 
-
-                Connection connection = UserRepository.getConnection();
-
-
-                PreparedStatement ps = connection.prepareStatement("insert into users(login,password,role) values (?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("insert into users(login,password,role) values (?,?,?)");
 
 
-                ps.setString(1, myUser.getLogin());
-                ps.setString(2, String.valueOf(myUser.getPassword().hashCode()));
-                ps.setString(3, myUser.getRole());
+            ps.setString(1, myUser.getLogin());
+            ps.setString(2, String.valueOf(myUser.getPassword().hashCode()));
+            ps.setString(3, myUser.getRole());
 
 
-                status = ps.executeUpdate();
-                connection.close();
+            status = ps.executeUpdate();
+            connection.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -73,7 +72,7 @@ public class UserRepository {
             while (rs.next()) {
 
 
-                User myUser=createUser(rs);
+                User myUser = createUser(rs);
 
                 listUsers.add(myUser);
             }
@@ -85,6 +84,7 @@ public class UserRepository {
         }
         return listUsers;
     }
+
     public static int delete(String login) {
 
         int status = 0;
@@ -102,6 +102,7 @@ public class UserRepository {
         }
         return status;
     }
+
     public static int update(User myUser) {
 
         int status = 0;
@@ -129,7 +130,7 @@ public class UserRepository {
             PreparedStatement ps = connection.prepareStatement("update users set password=? where login=? ");
             ps.setString(1, String.valueOf(myUser.getPassword().hashCode()));
 
-            ps.setString(2,myUser.getLogin());
+            ps.setString(2, myUser.getLogin());
             status = ps.executeUpdate();
             connection.close();
 
@@ -148,7 +149,7 @@ public class UserRepository {
             PreparedStatement ps = connection.prepareStatement("update users set role=? where login=? ");
             ps.setString(1, myUser.getRole());
 
-            ps.setString(2,myUser.getLogin());
+            ps.setString(2, myUser.getLogin());
             status = ps.executeUpdate();
             connection.close();
 
@@ -173,12 +174,12 @@ public class UserRepository {
 
     public static boolean checkLogin(String myLogin) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT COUNT(*) FROM users WHERE login=?");
-        int result=0;
+        PreparedStatement test = connection.prepareStatement("SELECT COUNT(*) FROM users WHERE login=?");
+        int result = 0;
         test.setString(1, myLogin);
 
-        ResultSet res= test.executeQuery();
-        if (res.next()){
+        ResultSet res = test.executeQuery();
+        if (res.next()) {
             result = res.getInt("count");
         }
 
@@ -186,34 +187,34 @@ public class UserRepository {
 
     }
 
-    public static boolean checkPass(String myLogin,String myPassword) throws SQLException {
+    public static boolean checkPass(String myLogin, String myPassword) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT count(id) FROM users WHERE  password=? and login=? and not isblocked=true ");
+        PreparedStatement test = connection.prepareStatement("SELECT count(id) FROM users WHERE  password=? and login=? and not isblocked=true ");
 
-        test.setString(1,myPassword);
-        test.setString(2,myLogin);
+        test.setString(1, myPassword);
+        test.setString(2, myLogin);
 
-        ResultSet res= test.executeQuery();
-        int result=0;
-        if (res.next()){
+        ResultSet res = test.executeQuery();
+        int result = 0;
+        if (res.next()) {
             result = res.getInt("count");
         }
 
-        return result>0;
+        return result > 0;
     }
-    public static void checkRole(String myLogin, String myPassword) throws SQLException {
+
+    public static String checkRole(String myLogin, String myPassword) throws SQLException {
         Connection connection = UserRepository.getConnection();
-        PreparedStatement test=connection.prepareStatement("SELECT * FROM users WHERE  password=? and login=? and not isblocked=true ");
+        PreparedStatement test = connection.prepareStatement("SELECT * FROM users WHERE  password=? and login=? and not isblocked=true ");
 
-        test.setString(1,myPassword);
-        test.setString(2,myLogin);
-
-        ResultSet res= test.executeQuery();
-
-        if (res.next()){
-            AuthorizationUserServlet.role=res.getString("role");
-            AuthorizationUserServlet.login=res.getString("login");
+        test.setString(1, myPassword);
+        test.setString(2, myLogin);
+        String role="";
+        ResultSet res = test.executeQuery();
+        if(res.next()){
+            role= res.getString("role");
         }
+        return role;
 
     }
 

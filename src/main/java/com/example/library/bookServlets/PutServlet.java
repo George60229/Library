@@ -2,6 +2,8 @@ package com.example.library.bookServlets;
 
 import com.example.library.Book;
 import com.example.library.BookRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +15,10 @@ import java.io.PrintWriter;
 
 @WebServlet("/putBook")
 public class PutServlet extends HttpServlet {
-
+    private static final Logger logger = LogManager.getLogger();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        logger.info("Book start changes...");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -35,8 +37,10 @@ public class PutServlet extends HttpServlet {
         int status = BookRepository.update(myBook);
 
         if (status > 0) {
+            logger.info("Book is successfully changed ");
             response.sendRedirect("viewServlet");
         } else {
+            logger.error("Book is not changed ");
             out.println("Sorry! unable to update record");
         }
         out.close();

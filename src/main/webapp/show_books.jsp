@@ -29,11 +29,10 @@
   </tr>
 
   <tbody>
-  <%
-  String sid="";
-  sid =request.getParameter("contact");
-  List<Book> list = BookRepository.getAllBooksOrderBy(sid);
+
+    <%List<Book> list = BookRepository.getAllBooksOrderByAuthor();
    request.setAttribute("myList",list);
+
 %>
    <c:forEach items="${requestScope.myList}" var="book">
   <%
@@ -42,7 +41,6 @@
   %>
 
     <tr>
-      <td><c:out value="${book.id}"/> </td>
       <td><c:out value="${book.name}"/> </td>
       <td><c:out value="${book.country}"/> </td>
       <td><c:out value="${book.amount}"/> </td>

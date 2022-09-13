@@ -11,15 +11,15 @@
     <body>
     <form method="post" action="saveBook">
 
-        Name: <input name="name" />
+        Name: <input name="name" required/>
 
-        Country: <input name="country"  />
+        Country: <input name="country"  required/>
 
-        Amount: <input name="amount" min="1"/>
+        Amount: <input name="amount" min="1" required type="number"/>
 
-        Author: <input name="author"  />
+        Author: <input name="author"  required/>
 
-        Year: <input name="year"  max="2022"/>
+        Year: <input name="year"  max="2022" required/>
 
 
 

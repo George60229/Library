@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -24,8 +25,8 @@ public class TakeBookServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-
-
+        HttpSession session=request.getSession();
+        String login= (String) session.getAttribute("login");
         String name = request.getParameter("name");
 
         Book myBook = new Book();
@@ -37,7 +38,7 @@ public class TakeBookServlet extends HttpServlet {
 
         if (status > 0) {
             UserInfo myInfo=new UserInfo();
-            myInfo.setLogin(AuthorizationUserServlet.login);
+            myInfo.setLogin(login);
             myInfo.setBook(myBook.getName());
             myInfo.setDays(10);
 
@@ -47,9 +48,11 @@ public class TakeBookServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            out.println("all is ok");
+            response.sendRedirect("account.jsp");
         } else {
-            out.println("Sorry! You can't take this book");
+            session.setAttribute("error","This book didn't exist");
+            session.setAttribute("caused","account.jsp");
+            response.sendError(404);
         }
         out.close();
     }

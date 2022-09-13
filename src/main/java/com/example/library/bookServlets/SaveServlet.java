@@ -2,6 +2,8 @@ package com.example.library.bookServlets;
 
 import com.example.library.Book;
 import com.example.library.BookRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +15,13 @@ import java.io.PrintWriter;
 
 @WebServlet("/saveBook")
 public class SaveServlet extends HttpServlet {
-
+    private static final Logger logger = LogManager.getLogger();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
-
+        logger.info("Creating book...");
         PrintWriter out = response.getWriter();
 
         String name = request.getParameter("name");
@@ -42,8 +44,10 @@ public class SaveServlet extends HttpServlet {
 
 
         if (status > 0) {
-            out.print("Record saved successfully!");
+            logger.info("Book is created");
+            out.print("Book is created!");
         } else {
+            logger.info("Book is not created");
             out.println("Sorry! unable to save record");
         }
         out.close();

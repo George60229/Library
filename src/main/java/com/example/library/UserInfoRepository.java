@@ -57,7 +57,7 @@ public class UserInfoRepository {
         }
         return listUsers;
     }
-    public static int updateAmount(Book myBook) {
+    public static int updateAmount(Book myBook,String login) {
 
 int status=0;
 
@@ -68,10 +68,10 @@ int status=0;
 
             PreparedStatement ps = connection.prepareStatement("delete from users_info where book=? and login=?");
             ps.setString(1, myBook.getName());
-            ps.setString(2, AuthorizationUserServlet.login);
+            ps.setString(2,login );
 
 
-status=ps.executeUpdate();
+        status=ps.executeUpdate();
             connection.close();
 
         } catch (SQLException sqlException) {

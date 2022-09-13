@@ -1,4 +1,6 @@
 <%@ page import="com.example.library.userServlets.AuthorizationUserServlet" %>
+<%@ page import="org.apache.logging.log4j.core.Logger" %>
+<%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +11,11 @@
     <link rel="stylesheet" href="styles/enter_styles.less">
 </head>
 <body bgcolor="#fff8dc">
+<%
+     final org.apache.logging.log4j.Logger logger = LogManager.getLogger();
 
+    logger.info("Main page is ready");
+%>
 <div class="one"><h1>Welcome to the best library</h1>
 
 
@@ -22,10 +28,10 @@
 
             <div class="container">
 
-                <input type="text" placeholder="Enter Username" name="login" required>
+                <input type="text" placeholder="Enter Username" name="login" required >
 
 
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <input type="password" placeholder="Enter Password" name="password" required minlength="5">
 
                 </label>
                 <button type="submit">Login</button>
@@ -93,7 +99,7 @@
 
 
 
-    <form class="form" action="show_books.jsp">
+    <form class="form" action="checkOrderBook">
 
 
         <button type="submit">Submit</button>

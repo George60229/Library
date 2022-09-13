@@ -25,10 +25,7 @@ public class BlockUserServlet extends HttpServlet {
 
 
         String block =request.getParameter("isblocked");
-        boolean blocked = false;
-        if ("1".equals(block)) {
-            blocked = true;
-        }
+        boolean blocked = "1".equals(block);
 
 
         User myUser = new User();
