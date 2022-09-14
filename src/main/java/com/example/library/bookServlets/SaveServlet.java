@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,6 +20,8 @@ public class SaveServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+        HttpSession session=request.getSession();
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         logger.info("Creating book...");
@@ -45,10 +48,12 @@ public class SaveServlet extends HttpServlet {
 
         if (status > 0) {
             logger.info("Book is created");
-            out.print("Book is created!");
+            response.sendRedirect("account.jsp");
         } else {
             logger.info("Book is not created");
-            out.println("Sorry! unable to save record");
+            session.setAttribute("caused","save_book.jsp");
+            session.setAttribute("error","Book is not created");
+            response.sendError(404);
         }
         out.close();
     }

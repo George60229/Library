@@ -16,16 +16,12 @@ public class DeleteServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("Book is ready to delete...");
-        String sid = request.getParameter("id");
-        int id = Integer.parseInt(sid);
-        if(id<0){
-            logger.error("Book is not deleted");
-            response.sendError(404, "Wrong id !!!");
-            return;
-        }
-        BookRepository.delete(id);
+        String sid = request.getParameter("name");
+
+
+        BookRepository.delete(sid);
         logger.info("Book is successfully deleted");
-        response.sendRedirect("viewServlet");
+        response.sendRedirect("account.jsp");
     }
 }
 

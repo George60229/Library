@@ -43,9 +43,12 @@ public class ChangePasswordServlet extends HttpServlet {
         int status = UserRepository.updatePass(myUser);
 
         if (status > 0) {
-            out.println("Password is changed successfully");
+            response.sendRedirect("account.jsp");
         } else {
-            out.println("Sorry! unable to update record");
+            session.setAttribute("error","Password is not changed");
+            session.setAttribute("caused","change_password.jsp");
+
+            response.sendError(404);
         }
         out.close();
     }

@@ -13,6 +13,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <link rel="shortcut icon" href="https://img.captain-droid.com/wp-content/uploads/2014/03/ckazki-dlya-detey-icon.png.webp" type="image/x-icon">
     <title>My account</title>
     <link rel="stylesheet" href="styles/styles.less">
 </head>
@@ -21,8 +22,8 @@
 
 
     <% if (session.getAttribute("role").equals("Admin")) { %>
-    <a  href="viewUsersOrders">View users orders</a>
-    <a  href="viewUsers">View Users</a>
+    <a  href="show_users_orders.jsp">View users orders</a>
+    <a  href="show_users.jsp">View Users</a>
     <a href="enter.jsp">Create User</a>
     <% }
     %>
@@ -33,7 +34,7 @@
     <% }
     %>
 
-
+    <a href="search_book.jsp">Find book</a>
     <a href="change_password.jsp">Change password</a>
     <a href="index.jsp">Sign out</a>
 
@@ -94,10 +95,10 @@
 
                     <% if (session.getAttribute("role").equals("Admin")||session.getAttribute("role").equals("Librarian")) { %>
 
-            <form method="post" action="deleteBook">
+            <form method="get" action="deleteBook">
                 <br><br> <br><br><br><br>
 
-                Book id:<input type="number" name="id" required>
+                Book name:<input type="text" name="name" required>
 
 
                 <br><br>

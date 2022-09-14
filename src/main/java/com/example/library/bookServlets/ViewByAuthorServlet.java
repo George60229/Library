@@ -14,6 +14,7 @@ import java.util.List;
 
 @WebServlet("/viewBookByAuthor")
 public class ViewByAuthorServlet extends HttpServlet {
+    //todo use this
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html");
@@ -24,7 +25,7 @@ public class ViewByAuthorServlet extends HttpServlet {
 
         List<Book> myBooks = BookRepository.getBooksByAuthor(sid);
 
-        out.print(myBooks);
+        out.println(myBooks);
         out.close();
     }
 }

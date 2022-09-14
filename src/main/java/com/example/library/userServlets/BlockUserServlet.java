@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,7 +21,7 @@ public class BlockUserServlet extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
+        HttpSession session=request.getSession();
         String sid = request.getParameter("login");
 
 
@@ -37,9 +38,13 @@ public class BlockUserServlet extends HttpServlet {
         int status = UserRepository.update(myUser);
 
         if (status > 0) {
-            out.println("User is blocked successfully");
+
+            response.sendRedirect("account.jsp");
         } else {
-            out.println("Sorry! unable to update record");
+            session.setAttribute("error","User is not blocked");
+            session.setAttribute("caused","account.jsp");
+
+            response.sendError(404);
         }
         out.close();
     }

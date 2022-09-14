@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,7 +20,7 @@ public class ChangeRoleServlet extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
+        HttpSession session=request.getSession();
 
 
         String login = request.getParameter("login");
@@ -41,7 +42,10 @@ public class ChangeRoleServlet extends HttpServlet {
         if (status > 0) {
             out.println("Role is changed successfully");
         } else {
-            out.println("Sorry! unable to update record");
+            session.setAttribute("error","Role is not changed");
+            session.setAttribute("caused","account.jsp");
+
+            response.sendError(404);
         }
         out.close();
     }

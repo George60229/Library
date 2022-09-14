@@ -20,7 +20,7 @@ public class DeleteUserServlet extends HttpServlet {
 
         UserRepository.delete(sid);
 
-        response.sendRedirect("http://localhost:8888/Library_war_exploded/account.jsp");
+        response.sendRedirect("account.jsp");
         out.close();
     }
 }

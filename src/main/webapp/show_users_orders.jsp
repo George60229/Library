@@ -1,17 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 9/5/2022
-  Time: 11:58 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="com.example.library.BookRepository" %>
 <%@ page import="com.example.library.Book" %>
+<%@ page import="com.example.library.UserInfoRepository" %>
+<%@ page import="com.example.library.UserInfo" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: User
-  Date: 9/3/2022
-  Time: 1:23 AM
+  Date: 9/13/2022
+  Time: 3:58 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -27,35 +22,32 @@
 <table id="myTable" class="display" border="1" cellpadding="20%">
 
     <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Country</th>
-        <th>Amount</th>
-        <th>Year</th>
+
+        <th>Reader</th>
+        <th>Book</th>
 
 
     </tr>
 
     <tbody>
-        <%List<Book> list = BookRepository.getAllBooksOrderByCountry();
+
+        <%List<UserInfo> list = UserInfoRepository.getAllUsersInfo();
    request.setAttribute("myList",list);
 
 %>
-    <c:forEach items="${requestScope.myList}" var="book">
+    <c:forEach items="${requestScope.myList}" var="info">
+            <%
+
+
+            %>
 
     <tr>
-        <td><c:out value="${book.id}"/> </td>
-        <td><c:out value="${book.name}"/> </td>
-        <td><c:out value="${book.country}"/> </td>
-        <td><c:out value="${book.amount}"/> </td>
-        <td><c:out value="${book.year}"/> </td>
-
-
+        <td><c:out value="${info.login}"/> </td>
+        <td><c:out value="${info.book}"/> </td>
     </tr>
         <%--        </c:if>--%>
     </c:forEach>
 
 </body>
 </html>
-
 

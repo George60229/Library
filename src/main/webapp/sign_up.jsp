@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Sign up</title>
+    <link rel="shortcut icon" href="https://img.captain-droid.com/wp-content/uploads/2014/03/ckazki-dlya-detey-icon.png.webp" type="image/x-icon">
     <link rel="stylesheet" href="styles/styles.less">
 </head>
 <body>

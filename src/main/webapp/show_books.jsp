@@ -12,6 +12,7 @@
 <html>
 <head>
   <title>Show books</title>
+  <link rel="shortcut icon" href="https://img.captain-droid.com/wp-content/uploads/2014/03/ckazki-dlya-detey-icon.png.webp" type="image/x-icon">
   <link rel="stylesheet" href="styles/table_styles.less">
 </head>
 <body>

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebFilter("/*")
-public class JspFilter implements Filter {
+@WebFilter("/jsp")
+public class AdminFilter implements Filter {
 
     private ServletContext context;
 
@@ -29,10 +29,10 @@ public class JspFilter implements Filter {
 
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("role") == null && uri.endsWith("jsp")&&!uri.endsWith("show_books.jsp")&&!uri.endsWith("show_books_1.jsp")&&!uri.endsWith("show_books_2.jsp")&&!uri.endsWith("show_books_3.jsp")) {
+        if (!session.getAttribute("role").equals("admin") && (uri.endsWith("change_password.jsp")||uri.endsWith("enter.jsp"))) {
             this.context.log("<<< Unauthorized access request");
-                PrintWriter out = res.getWriter();
-                out.println("No access!!!");
+            PrintWriter out = res.getWriter();
+            out.println("No access!!!");
 
 
         } else {

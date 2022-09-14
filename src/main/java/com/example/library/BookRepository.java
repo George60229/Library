@@ -95,14 +95,14 @@ int status=0;
         return status;
     }
 
-    public static int delete(int id) {
+    public static int delete(String sid) {
 
         int status = 0;
 
         try {
             Connection connection = BookRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("delete from books where id=?");
-            ps.setInt(1, id);
+            PreparedStatement ps = connection.prepareStatement("delete from books where name=?");
+            ps.setString(1, sid);
             status = ps.executeUpdate();
 
             connection.close();
@@ -294,14 +294,8 @@ int status=0;
             while (rs.next()) {
 
 
-                Book myBook = new Book();
+                Book myBook = createBook(rs);
 
-                myBook.setId(rs.getInt(1));
-                myBook.setName(rs.getString(2));
-                myBook.setCountry(rs.getString(3));
-                myBook.setAuthor(rs.getString(4));
-                myBook.setAmount(rs.getInt(5));
-                myBook.setYear(rs.getInt(6));
 
                 if (myBook.getAuthor().equals(author)) {
                     listBooks.add(myBook);
@@ -330,7 +324,10 @@ int status=0;
 
                 Book myBook = createBook(rs);
 
-                if (myBook.getAuthor().equals(name)) {
+
+
+
+                if (myBook.getName().equals(name)) {
                     listBooks.add(myBook);
                 }
             }

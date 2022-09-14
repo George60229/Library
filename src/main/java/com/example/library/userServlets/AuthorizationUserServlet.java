@@ -53,7 +53,7 @@ public class AuthorizationUserServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
             session.setAttribute("login",myLog);
-            logger.info("role is set, sign in is successfull");
+            logger.info("role is set, sign in is successfully done");
             response.sendRedirect("account.jsp");
 
         } else {
