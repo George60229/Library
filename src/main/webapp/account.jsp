@@ -48,6 +48,8 @@
             <h1>Name:<%=session.getAttribute("login")%></h1>
             <br><br>
             <h1>Role:<%=session.getAttribute("role")%></h1>
+            <br><br>
+
         </td></tr>
     <tr align=left>
 
@@ -89,7 +91,14 @@
                 <br><br>
                 <button name="button">Delete user</button>
             </form>
+            <form method="post" action="removePenalty">
+                <br><br> <br><br><br><br>
+                Enter name user with penalty :<input type="text" name="login" required>
 
+                <br><br>
+                <button name="button">Remove Penalty</button>
+
+            </form>
             <% }
             %>
 

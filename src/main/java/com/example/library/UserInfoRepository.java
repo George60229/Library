@@ -3,7 +3,9 @@ package com.example.library;
 import com.example.library.userServlets.AuthorizationUserServlet;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static com.example.library.BookRepository.createBook;
@@ -57,9 +59,52 @@ public class UserInfoRepository {
         }
         return listUsers;
     }
+    public static boolean CheckDate(Book myBook,String login,Date nowDate) {
+
+
+            Date oldDate=nowDate;
+
+        try {
+            Connection connection = BookRepository.getConnection();
+
+
+
+            PreparedStatement ps = connection.prepareStatement("select days from users_info where book=? and login=?");
+            ps.setString(1, myBook.getName());
+            ps.setString(2,login );
+
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+               oldDate=rs.getDate("days");
+
+            }
+            Calendar calendarStart = Calendar.getInstance();
+            calendarStart.setTimeInMillis(oldDate.getTime());
+
+            Calendar calendarEnd = Calendar.getInstance();
+            calendarEnd.setTimeInMillis(nowDate.getTime());
+
+            long difference = calendarEnd.getTimeInMillis() - calendarStart.getTimeInMillis();
+            long days = difference /(24* 60 * 60 * 1000);
+
+            if(days>UserInfo.DAYS){
+                connection.close();
+                return false;
+            }
+
+        connection.close();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
+        return true;
+
+    }
     public static int updateAmount(Book myBook,String login) {
 
-int status=0;
+        int status=0;
+
 
         try {
             Connection connection = BookRepository.getConnection();
@@ -71,7 +116,7 @@ int status=0;
             ps.setString(2,login );
 
 
-        status=ps.executeUpdate();
+            status=ps.executeUpdate();
             connection.close();
 
         } catch (SQLException sqlException) {
@@ -97,7 +142,7 @@ int status=0;
 
 
             ps.setString(1, myUserInfo.getLogin());
-            ps.setInt(2, myUserInfo.getDays());
+            ps.setDate(2, myUserInfo.getDays());
             ps.setString(3, myUserInfo.getBook());
 
 

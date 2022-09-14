@@ -1,10 +1,15 @@
 package com.example.library;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+
 public class UserInfo {
+    public static int DAYS=10;
     private int id;
     private String login;
     private String book;
-    private int days;
+    private Date days;
 
     @Override
     public String toString() {
@@ -38,11 +43,11 @@ public class UserInfo {
         this.book = book;
     }
 
-    public int getDays() {
+    public Date getDays() {
         return days;
     }
 
-    public void setDays(int days) {
+    public void setDays(Date days) {
         this.days = days;
     }
 }

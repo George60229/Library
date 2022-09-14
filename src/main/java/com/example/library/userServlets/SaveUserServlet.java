@@ -60,7 +60,7 @@ public class SaveUserServlet extends HttpServlet {
 
         if(status==-1){
             logger.error("User exist already");
-            session.setAttribute("caused","account.jsp");
+            session.setAttribute("caused","index.jsp");
             session.setAttribute("error","User exist already");
             response.sendError(404);
 

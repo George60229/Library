@@ -11,11 +11,10 @@ import java.io.PrintWriter;
 @WebFilter("/jsp")
 public class LibrarianFilter implements Filter {
 
-    private ServletContext context;
+
 
     public void init(FilterConfig fConfig) throws ServletException {
-        this.context = fConfig.getServletContext();
-        this.context.log(">>> AuthenticationFilter initialized");
+
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -25,12 +24,12 @@ public class LibrarianFilter implements Filter {
 
         String uri = req.getRequestURI();
 
-        this.context.log("Requested Resource::http://localhost:8889" + uri);
+
 
         HttpSession session = req.getSession();
 
         if ((!session.getAttribute("role").equals("admin")||!session.getAttribute("role").equals("librarian") )&& (uri.endsWith("save_book.jsp"))) {
-            this.context.log("<<< Unauthorized access request");
+
             ((HttpServletResponse) response).sendRedirect("404.jsp");
 
 

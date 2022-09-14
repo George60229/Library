@@ -11,11 +11,10 @@ import java.io.PrintWriter;
 @WebFilter("/*")
 public class JspFilter implements Filter {
 
-    private ServletContext context;
+
 
     public void init(FilterConfig fConfig) throws ServletException {
-        this.context = fConfig.getServletContext();
-        this.context.log(">>> AuthenticationFilter initialized");
+
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -25,12 +24,12 @@ public class JspFilter implements Filter {
 
         String uri = req.getRequestURI();
 
-        this.context.log("Requested Resource::http://localhost:8889" + uri);
+
 
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("role") == null && uri.endsWith("jsp")&&!uri.endsWith("show_books.jsp")&&!uri.endsWith("show_books_1.jsp")&&!uri.endsWith("show_books_2.jsp")&&!uri.endsWith("show_books_3.jsp")) {
-            this.context.log("<<< Unauthorized access request");
+        if (session.getAttribute("role") == null && uri.endsWith("jsp")&&!uri.endsWith("show_books.jsp")&&!uri.endsWith("show_books_1.jsp")&&!uri.endsWith("show_books_2.jsp")&&!uri.endsWith("show_books_3.jsp")&&!uri.endsWith("index.jsp")) {
+
                 PrintWriter out = res.getWriter();
                 out.println("No access!!!");
 

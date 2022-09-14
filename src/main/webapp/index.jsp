@@ -2,7 +2,8 @@
 <%@ page import="org.apache.logging.log4j.core.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "ex" uri = "WEB-INF/custom.tld"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,10 +47,10 @@
     </div>
 
     <script>
-        // Get the modal
+
         var modal = document.getElementById('id01');
 
-        // When the user clicks anywhere outside of the modal, close it
+
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -66,7 +67,7 @@
 
             <div class="container">
 
-                <input type="text" placeholder="Enter Username" name="login" required minlength="5">
+                <input type="text" placeholder="Enter Username" name="login" required >
 
 
                 <input type="password" placeholder="Enter Password" name="password" required minlength="5">
@@ -141,8 +142,6 @@
 
     </form>
 
-
-    <ex:Hello/>
 
 </body>
 </html>
